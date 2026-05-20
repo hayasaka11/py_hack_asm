@@ -1,6 +1,6 @@
 import sys
 from pathlib import PurePath
-from hack_Parser import Parser, A_INSTRUCTION, C_INSTRUCTION, L_INSTRUCTION
+from hack_parser import Parser, A_INSTRUCTION, C_INSTRUCTION, L_INSTRUCTION
 from hack_code import Code
 
 input_filename = sys.argv[1]

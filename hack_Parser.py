@@ -1,6 +1,6 @@
 A_INSTRUCTION = 0
 C_INSTRUCTION = 1
-L_INSTRUCTION = 3
+L_INSTRUCTION = 2
 
 class Parser:
 
@@ -12,7 +12,7 @@ class Parser:
 
     def __init__(self, file_name) -> None:
         # 入力ファイル / データストリームを開き、解析の準備をする。
-        self.file = open(file_name, "r", encoding="utf=8")
+        self.file = open(file_name, "r", encoding="utf-8")
         self.current_instruction = ""
 
     def hasMoreLines(self) -> bool:
@@ -23,7 +23,7 @@ class Parser:
         return newline != ""
 
 
-    def advance(self) -> None:
+    def advance(self):
         # 次の命令を読み込み現在の命令にする。
         if self.hasMoreLines():
 
@@ -31,13 +31,12 @@ class Parser:
             while next_instruction is None:
                 next_instruction = self.file.readline()
 
-                if next_instruction == "\n":
+                if next_instruction.lstrip() == "":
                     next_instruction = None
-                elif next_instruction.startswith("//"):
+                elif next_instruction.lstrip().startswith("//"):
                     next_instruction = None
             
-            # 最後が空行コメントの場合は''が入る
-            self.current_instruction = next_instruction
+            self.current_instruction = next_instruction.lstrip()
 
     def instructionType(self):
         # 現在の命令のタイプを返す。

@@ -1,4 +1,7 @@
 AGENTS.md
+.DS_Store
+.vscode/
+*.hack
 # Python-generated files
 __pycache__/
 *.py[oc]
